@@ -28,15 +28,34 @@ function render(variables = {}) {
   // if includeCover==false then we reset the cover code without the <img> tag to make the cover transparent.
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
+  let pFullName = "Lucy Boilet";
+  if (variables.name != null || variables.lastname != null) {
+    pFullName =
+      (variables.name ? variables.name : "") +
+      (variables.lastname ? variables.lastname : "");
+  }
+  let prole = variables.role ? variables.role : "Web Developer";
+  let pcity = variables.city ? variables.city : "null";
+  let pcountry = variables.country ? variables.country : "null";
+
+  let psocialMediaPosition = "position-left";
+  let smHidden = "hidden";
+
+  if (variables.socialMediaPosition != null) {
+    smHidden = "visible";
+    psocialMediaPosition = variables.socialMediaPosition;
+  }
 
   // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
+
+
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>Lucy Boilett</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
-          <ul class="position-right">
+          <h1> ${pFullName}</h1>
+          <h2>${prole}</h2>
+          <h3>${pcity}, ${pcountry}</h3>
+          <ul class="${psocialMediaPosition} style="postion:hidden">
             <li><a href="https://twitter.com/alesanchezr"><i class="fa fa-twitter"></i></a></li>
             <li><a href="https://github.com/alesanchezr"><i class="fa fa-github"></i></a></li>
             <li><a href="https://linkedin.com/alesanchezr"><i class="fa fa-linkedin"></i></a></li>
@@ -58,7 +77,7 @@ window.onload = function() {
     // this is the url for the profile avatar
     avatarURL: "https://randomuser.me/api/portraits/women/42.jpg",
     // social media bar position (left or right)
-    socialMediaPosition: "position-left",
+    socialMediaPosition: "null",
     // social media usernames
     twitter: null,
     github: "alesanchezr",
