@@ -32,12 +32,12 @@ function render(variables = {}) {
   if (variables.name != null || variables.lastname != null) {
     pFullName =
       (variables.name ? variables.name : "") +
+      "" +
       (variables.lastname ? variables.lastname : "");
   }
   let prole = variables.role ? variables.role : "Web Developer";
   let pcity = variables.city ? variables.city : "null";
   let pcountry = variables.country ? variables.country : "null";
-
   let psocialMediaPosition = "position-left";
   let smHidden = "hidden";
 
@@ -45,6 +45,23 @@ function render(variables = {}) {
     smHidden = "visible";
     psocialMediaPosition = variables.socialMediaPosition;
   }
+
+  let pCity = variables.city ? variables.city : "Miami";
+
+  let pCountry = variables.country ? variables.country : "USA";
+
+  let pTwitter = variables.twitter
+    ? variables.twitter
+    : "https://twitter.com/alesanchezr";
+  let pGithub = variables.github
+    ? variables.github
+    : "https://github.com/alesanchezr";
+  let pLinkedIn = variables.linkedin
+    ? variables.linkedin
+    : "https://linkedin.com/alesanchezr";
+  let pInstagram = variables.instagram
+    ? variables.instagram
+    : "https://instagram.com/alesanchezr";
 
   // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
@@ -55,11 +72,11 @@ function render(variables = {}) {
           <h1> ${pFullName}</h1>
           <h2>${prole}</h2>
           <h3>${pcity}, ${pcountry}</h3>
-          <ul class="${psocialMediaPosition} style="postion:hidden">
-            <li><a href="https://twitter.com/alesanchezr"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="https://github.com/alesanchezr"><i class="fa fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/alesanchezr"><i class="fa fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/alesanchezr"><i class="fa fa-instagram"></i></a></li>
+          <ul class="${psocialMediaPosition} style="visibility: ${smHidden};">
+           <li><a href="${pTwitter}"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="${pGithub}"><i class="fa fa-github"></i></a></li>
+            <li><a href="${pLinkedIn}"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="${pInstagram}"><i class="fa fa-instagram"></i></a></li>
           </ul>
         </div>
     `;
